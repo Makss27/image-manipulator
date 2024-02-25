@@ -1,0 +1,42 @@
+from PIL import Image
+from PIL import ImageFilter
+from PIL import ImageEnhance
+
+def i(line_edit):
+    image_name = line_edit.text()
+    with Image.open(image_name) as variable:
+        return (
+            str(variable.size) + "\n" +
+            str(variable.format) + "\n" +
+            str(variable.mode)
+        )
+
+def M(line_edit):
+    image_name = line_edit.text()
+    with Image.open(image_name) as variable:
+        blackandwight = variable.convert('L')
+        blackandwight.show()
+
+def p(line_edit):
+    image_name = line_edit.text()
+    with Image.open(image_name) as variable:
+        CONTROL_image = variable.filter(ImageFilter.CONTOUR)
+        CONTROL_image.show()
+
+def e(line_edit):
+    image_name = line_edit.text()
+    with Image.open(image_name) as variable:
+        EMBOSS_image = variable.filter(ImageFilter.EMBOSS)
+        EMBOSS_image.show()
+
+def f(line_edit):
+    image_name = line_edit.text()
+    with Image.open(image_name) as variable:
+        FLIP_image = variable.transpose(Image.FLIP_LEFT_RIGHT)
+        FLIP_image.show()
+
+def r(line_edit):
+    image_name = line_edit.text()
+    with Image.open(image_name) as variable:
+        BLUR_image = variable.filter(ImageFilter.BLUR)
+        BLUR_image.show()
