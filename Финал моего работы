@@ -1,0 +1,115 @@
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
+    QApplication,
+    QWidget,
+    QHBoxLayout,
+    QVBoxLayout,
+    QGroupBox,
+    QRadioButton,
+    QPushButton,
+    QLineEdit,
+    QLabel)
+from PyQt5 import QtGui
+from PIL import Image
+from PIL import ImageFilter
+from PIL import ImageEnhance
+import pywinstyles
+from Жопа_негра import *
+
+def s_i(l, l_e):
+    i_n = l_e.text()
+    m = i(i_n)
+    l.setText(m)
+
+
+
+stfb = """
+    QPushButton {
+        color:blue;
+        border-color: white;
+        border-radius: 5px;
+        border-width:1px;
+        padding:10 px;
+        border-style: Win7;
+        font-weight: 600;
+        font-size: 30px;
+    }
+    QPushButton:hover {
+        color:green;
+        border: 1px solid white;
+        font-weight: 700;
+        
+    }
+    QPushButton:focus {
+        color:red;
+        border: 1px solid gray;
+        border-color: gray;
+    }
+    """
+
+app = QApplication([])
+window = QWidget()
+window.setStyleSheet("background:yellow;")
+layout = QVBoxLayout()
+
+l_i = QLabel("")
+l_i.setStyleSheet("color:blue;")
+
+window.setWindowTitle('Как фрилансить и зарабатывать миллион биткоинов в секунду?')
+window.setWindowIcon(QtGui.QIcon('негр.png'))
+pywinstyles.apply_style(window, 'native')
+
+
+input_image = QLineEdit()
+input_image.setStyleSheet('color:white;border:2px solid gray;padding: 5px;font-size:30px')
+input_image.setPlaceholderText('Введите текст')
+layout.addWidget(input_image)
+
+
+
+layoutv1= QVBoxLayout()
+layout1 = QHBoxLayout()
+layout2 = QHBoxLayout()
+layoutv1.addLayout(layout1)
+layoutv1.addLayout(layout2)
+layout.addLayout(layoutv1)
+
+b_i = QPushButton('изображению')
+b_i.setStyleSheet(stfb)
+b_i.clicked.connect(
+    lambda: s_i(l_i, input_image)
+)
+layout1.addWidget(b_i)
+
+b_M = QPushButton('черно-белым')
+b_M.setStyleSheet(stfb)
+b_M.clicked.connect(lambda: M(input_image))
+layout1.addWidget(b_M)
+
+b_p = QPushButton('карандашом')
+b_p.setStyleSheet(stfb)
+b_p.clicked.connect(lambda: p(input_image))
+layout1.addWidget(b_p)
+
+b_e = QPushButton('тиснение')
+b_e.setStyleSheet(stfb)
+b_e.clicked.connect(lambda: e(input_image))
+layout2.addWidget(b_e)
+
+b_f = QPushButton('отзеркаливание')
+b_f.setStyleSheet(stfb)
+b_f.clicked.connect(lambda: f(input_image))
+layout2.addWidget(b_f)
+
+b_r = QPushButton('разворот')
+b_r.setStyleSheet(stfb)
+b_r.clicked.connect(lambda: r(input_image))
+layout2.addWidget(b_r)
+
+layout.addWidget(l_i)
+
+window.setLayout(layout)
+window.show()
+window.resize(900,200)
+app.exec_()
+
